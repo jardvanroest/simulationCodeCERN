@@ -1,0 +1,109 @@
+==================================================
+BUILD_HOST                          = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
+COMPILER_VERSION                    = c++-9.0.0
+OSX_VERSION                         = 10.13.3
+BUILD_DATE                          = May  3 2018 11:08:44
+HOST                                = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
+CPU                                 = GenuineIntel Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
+LD_PRELOAD                          = (null)
+CPUINFO                             = Family 6 Model 69 Stepping 1
+KMP_AFFINITY                        = (null)
+KMP_BLOCKTIME                       = (null)
+Can't open (null) for reading!
+mbp-van-jard:simulationCodeCern jard$ ./cell_clustering small.cdc
+==================================================
+BUILD_HOST                          = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
+COMPILER_VERSION                    = c++-9.0.0
+OSX_VERSION                         = 10.13.3
+BUILD_DATE                          = May  3 2018 11:08:44
+HOST                                = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
+CPU                                 = GenuineIntel Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
+LD_PRELOAD                          = (null)
+CPUINFO                             = Family 6 Model 69 Stepping 1
+KMP_AFFINITY                        = (null)
+KMP_BLOCKTIME                       = (null)
+N_INITIAL                           = 1
+SPEED                               = 1.000000e-02
+T                                   = 500
+L                                   = 80
+D                                   = 3.000000e-01
+MU                                  = 1.000000e-01
+FINALNUMBERCELLS                    = 65536
+SPATIALSCALE                        = 5.000000e+00
+SPATIALRANGE                        = 1.240157e-01
+PATHTHRESHOLD                       = 2.000000e+00
+DIVTHRESHOLD                        = 16
+------------------------------------------
+INITIALIZATION_TIME                 = 1.778700e-02 s
+PHASE1_TIME                         = 8.115449e+00 s
+step 0
+subVolMax: 0.267184
+number of cells in subvolume: 8332
+cells in subvolume are not well-clustered: 0.501594
+INITIAL_CRITERION                   = 0
+INITIAL_ENERGY                      = 7.151500e-05
+step 10
+step 20
+step 30
+step 40
+step 50
+step 60
+step 70
+step 80
+step 90
+step 100
+step 110
+step 120
+step 130
+step 140
+step 150
+step 160
+step 170
+step 180
+step 190
+step 200
+step 210
+step 220
+step 230
+step 240
+step 250
+step 260
+step 270
+step 280
+step 290
+step 300
+step 310
+step 320
+step 330
+step 340
+step 350
+step 360
+step 370
+step 380
+step 390
+step 400
+step 410
+step 420
+step 430
+step 440
+step 450
+step 460
+step 470
+step 480
+step 490
+subVolMax: 0.267184
+number of cells in subvolume: 10266
+average neighbors in subvolume: 169.542953
+correctness coefficient: 0.008067
+FINAL_CRITERION                     = 1
+FINAL_ENERGY                        = -9.074517e-02
+PHASE2_TIME                         = 1.308049e+01 s
+produceSubstances_TIME              = 9.051420e-01 s (4.27 %)
+runDiffusionStep_TIME               = 1.619131e+01 s (76.39 %)
+runDecayStep_TIME                   = 3.858500e-01 s (1.82 %)
+cellMovementAndDuplication_TIME     = 4.452400e-02 s (0.21 %)
+runDiffusionClusterStep_TIME        = 2.704214e+00 s (12.76 %)
+getEnergy_TIME                      = 3.238920e-01 s (1.53 %)
+getCriterion_TIME                   = 3.311350e-01 s (1.56 %)
+TOTAL_COMPUTE_TIME                  = 2.119596e+01 s (100.00 %)
+==================================================
