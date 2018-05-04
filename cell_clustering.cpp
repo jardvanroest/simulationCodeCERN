@@ -77,13 +77,13 @@ static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
     produceSubstances_sw.reset();
 
     // increases the concentration of substances at the location of the cells
-    float sideLength = 1/(float)L; // length of a side of a diffusion voxel
+    //float sideLength = 1/(float)L; // length of a side of a diffusion voxel
 
     int c, i1, i2, i3;
     for (c=0; c< n; c++) {
-        i1 = std::min((int)floor(posAll[c][0]/sideLength),(L-1));
-        i2 = std::min((int)floor(posAll[c][1]/sideLength),(L-1));
-        i3 = std::min((int)floor(posAll[c][2]/sideLength),(L-1));
+        i1 = std::min((int)floor(posAll[c][0]*(float)L),(L-1));
+        i2 = std::min((int)floor(posAll[c][1]*(float)L),(L-1));
+        i3 = std::min((int)floor(posAll[c][2]*(float)L),(L-1));
 
         if (typesAll[c]==1) {
             Conc[0][i1][i2][i3]+=0.1;
