@@ -41,10 +41,7 @@ static int quiet = 0;
 
 static float RandomFloatPos() {
     // returns a random number between a given minimum and maximum
-    float random = ((float) rand()) / (float) RAND_MAX;
-    float a = 0;
-    float r = random;
-    return a + r;
+    return ((float) rand()) / (float) RAND_MAX;;
 }
 
 static float getNorm(float* currArray) {
