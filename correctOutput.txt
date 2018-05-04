@@ -1,0 +1,96 @@
+==================================================
+BUILD_HOST                          = rencern-VirtualBox-x86_64-Linux-4.15.0-20-generic
+COMPILER_VERSION                    = g++-7.3.0
+GLIBC_VERSION                       = 2.27
+BUILD_DATE                          = May  4 2018 10:44:04
+HOST                                = rencern-VirtualBox-x86_64-Linux-4.15.0-20-generic
+CPU                                 = GenuineIntel Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+LD_PRELOAD                          = (null)
+CPUINFO                             = Family 6 Model 142 Stepping 9
+KMP_AFFINITY                        = (null)
+KMP_BLOCKTIME                       = (null)
+N_INITIAL                           = 1
+SPEED                               = 1.000000e-02
+T                                   = 500
+L                                   = 80
+D                                   = 3.000000e-01
+MU                                  = 1.000000e-01
+FINALNUMBERCELLS                    = 65536
+SPATIALSCALE                        = 5.000000e+00
+SPATIALRANGE                        = 1.240157e-01
+PATHTHRESHOLD                       = 2.000000e+00
+DIVTHRESHOLD                        = 16
+------------------------------------------
+INITIALIZATION_TIME                 = 8.571232e-03 s
+PHASE1_TIME                         = 8.297638e+00 s
+step 0
+subVolMax: 0.267184
+number of cells in subvolume: 8301
+cells in subvolume are not well-clustered: 0.501378
+INITIAL_CRITERION                   = 0
+INITIAL_ENERGY                      = 5.981061e-05
+step 10
+step 20
+step 30
+step 40
+step 50
+step 60
+step 70
+step 80
+step 90
+step 100
+step 110
+step 120
+step 130
+step 140
+step 150
+step 160
+step 170
+step 180
+step 190
+step 200
+step 210
+step 220
+step 230
+step 240
+step 250
+step 260
+step 270
+step 280
+step 290
+step 300
+step 310
+step 320
+step 330
+step 340
+step 350
+step 360
+step 370
+step 380
+step 390
+step 400
+step 410
+step 420
+step 430
+step 440
+step 450
+step 460
+step 470
+step 480
+step 490
+subVolMax: 0.267184
+number of cells in subvolume: 10139
+average neighbors in subvolume: 204.202774
+correctness coefficient: 0.004422
+FINAL_CRITERION                     = 1
+FINAL_ENERGY                        = -7.818167e-02
+PHASE2_TIME                         = 1.802420e+01 s
+produceSubstances_TIME              = 1.110088e+00 s (4.22 %)
+runDiffusionStep_TIME               = 1.880694e+01 s (71.45 %)
+runDecayStep_TIME                   = 6.762784e-01 s (2.57 %)
+cellMovementAndDuplication_TIME     = 5.088516e-02 s (0.19 %)
+runDiffusionClusterStep_TIME        = 4.007283e+00 s (15.22 %)
+getEnergy_TIME                      = 5.944996e-01 s (2.26 %)
+getCriterion_TIME                   = 5.413025e-01 s (2.06 %)
+TOTAL_COMPUTE_TIME                  = 2.632193e+01 s (100.00 %)
+==================================================
