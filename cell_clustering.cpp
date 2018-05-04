@@ -81,9 +81,9 @@ static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
 
     int c, i1, i2, i3;
     for (c=0; c< n; c++) {
-        i1 = min((int)floor(posAll[c][0]*(float)L),(L-1));
-        i2 = min((int)floor(posAll[c][1]*(float)L),(L-1));
-        i3 = min((int)floor(posAll[c][2]*(float)L),(L-1));
+        i1 = std::min((int)floor(posAll[c][0]*(float)L),(L-1));
+        i2 = std::min((int)floor(posAll[c][1]*(float)L),(L-1));
+        i3 = std::min((int)floor(posAll[c][2]*(float)L),(L-1));
 
         if (typesAll[c]==1) {
             Conc[0][i1][i2][i3]+=0.1;
@@ -158,11 +158,12 @@ static void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.reset();
     // computes the changes in substance concentrations due to decay
     int i1,i2,i3;
+    float mu1 = 1-mu;
     for (i1 = 0; i1 < L; i1++) {
         for (i2 = 0; i2 < L; i2++) {
             for (i3 = 0; i3 < L; i3++) {
-                Conc[0][i1][i2][i3] = Conc[0][i1][i2][i3]*(1-mu);
-                Conc[1][i1][i2][i3] = Conc[1][i1][i2][i3]*(1-mu);
+                Conc[0][i1][i2][i3] = Conc[0][i1][i2][i3]*mu1;
+                Conc[1][i1][i2][i3] = Conc[1][i1][i2][i3]*mu1;
             }
         }
     }
@@ -232,16 +233,16 @@ static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posA
 
     for (c = 0; c < n; c++) {
 
-        i1 = min((int)floor(posAll[c][0]/sideLength),(L-1));
-        i2 = min((int)floor(posAll[c][1]/sideLength),(L-1));
-        i3 = min((int)floor(posAll[c][2]/sideLength),(L-1));
+        i1 = std::min((int)floor(posAll[c][0]/sideLength),(L-1));
+        i2 = std::min((int)floor(posAll[c][1]/sideLength),(L-1));
+        i3 = std::min((int)floor(posAll[c][2]/sideLength),(L-1));
 
-        xUp = min((i1+1),L-1);
-        xDown = max((i1-1),0);
-        yUp = min((i2+1),L-1);
-        yDown = max((i2-1),0);
-        zUp = min((i3+1),L-1);
-        zDown = max((i3-1),0);
+        xUp = std::min((i1+1),L-1);
+        xDown = std::max((i1-1),0);
+        yUp = std::min((i2+1),L-1);
+        yDown = std::max((i2-1),0);
+        zUp = std::min((i3+1),L-1);
+        zDown = std::max((i3-1),0);
 
         gradSub1[0] = (Conc[0][xUp][i2][i3]-Conc[0][xDown][i2][i3])/(sideLength*(xUp-xDown));
         gradSub1[1] = (Conc[0][i1][yUp][i3]-Conc[0][i1][yDown][i3])/(sideLength*(yUp-yDown));
