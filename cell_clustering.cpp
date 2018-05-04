@@ -69,6 +69,7 @@ static float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, f
     return l2Norm;
 }
 
+// Create new instances of struct stopwatch in util.cpp
 static stopwatch produceSubstances_sw;
 static stopwatch runDiffusionStep_sw;
 static stopwatch runDecayStep_sw;
