@@ -1,25 +1,12 @@
 ==================================================
-BUILD_HOST                          = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
-COMPILER_VERSION                    = c++-9.0.0
-OSX_VERSION                         = 10.13.3
-BUILD_DATE                          = May  3 2018 11:08:44
-HOST                                = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
-CPU                                 = GenuineIntel Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
+BUILD_HOST                          = box-codeanywhere-x86_64-Linux-2.6.32-042stab112.15
+COMPILER_VERSION                    = g++-4.8.2
+GLIBC_VERSION                       = 2.19
+BUILD_DATE                          = May  4 2018 04:13:52
+HOST                                = box-codeanywhere-x86_64-Linux-2.6.32-042stab112.15
+CPU                                 = GenuineIntel        Intel(R) Xeon(R) CPU E5-2660 0 @ 2.20GHz
 LD_PRELOAD                          = (null)
-CPUINFO                             = Family 6 Model 69 Stepping 1
-KMP_AFFINITY                        = (null)
-KMP_BLOCKTIME                       = (null)
-Can't open (null) for reading!
-mbp-van-jard:simulationCodeCern jard$ ./cell_clustering small.cdc
-==================================================
-BUILD_HOST                          = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
-COMPILER_VERSION                    = c++-9.0.0
-OSX_VERSION                         = 10.13.3
-BUILD_DATE                          = May  3 2018 11:08:44
-HOST                                = mbp-van-jard.dyndns.cern.ch-x86_64-Darwin-17.4.0
-CPU                                 = GenuineIntel Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
-LD_PRELOAD                          = (null)
-CPUINFO                             = Family 6 Model 69 Stepping 1
+CPUINFO                             = Family 6 Model 45 Stepping 7
 KMP_AFFINITY                        = (null)
 KMP_BLOCKTIME                       = (null)
 N_INITIAL                           = 1
@@ -34,14 +21,14 @@ SPATIALRANGE                        = 1.240157e-01
 PATHTHRESHOLD                       = 2.000000e+00
 DIVTHRESHOLD                        = 16
 ------------------------------------------
-INITIALIZATION_TIME                 = 1.778700e-02 s
-PHASE1_TIME                         = 8.115449e+00 s
+INITIALIZATION_TIME                 = 1.566364e-02 s
+PHASE1_TIME                         = 1.780853e+01 s
 step 0
 subVolMax: 0.267184
-number of cells in subvolume: 8332
-cells in subvolume are not well-clustered: 0.501594
+number of cells in subvolume: 8301
+cells in subvolume are not well-clustered: 0.501378
 INITIAL_CRITERION                   = 0
-INITIAL_ENERGY                      = 7.151500e-05
+INITIAL_ENERGY                      = 5.981061e-05
 step 10
 step 20
 step 30
@@ -92,18 +79,18 @@ step 470
 step 480
 step 490
 subVolMax: 0.267184
-number of cells in subvolume: 10266
-average neighbors in subvolume: 169.542953
-correctness coefficient: 0.008067
+number of cells in subvolume: 9287
+average neighbors in subvolume: 167.160217
+correctness coefficient: 0.012895
 FINAL_CRITERION                     = 1
-FINAL_ENERGY                        = -9.074517e-02
-PHASE2_TIME                         = 1.308049e+01 s
-produceSubstances_TIME              = 9.051420e-01 s (4.27 %)
-runDiffusionStep_TIME               = 1.619131e+01 s (76.39 %)
-runDecayStep_TIME                   = 3.858500e-01 s (1.82 %)
-cellMovementAndDuplication_TIME     = 4.452400e-02 s (0.21 %)
-runDiffusionClusterStep_TIME        = 2.704214e+00 s (12.76 %)
-getEnergy_TIME                      = 3.238920e-01 s (1.53 %)
-getCriterion_TIME                   = 3.311350e-01 s (1.56 %)
-TOTAL_COMPUTE_TIME                  = 2.119596e+01 s (100.00 %)
+FINAL_ENERGY                        = -8.418883e-02
+PHASE2_TIME                         = 3.415695e+01 s
+produceSubstances_TIME              = 1.394711e+00 s (2.68 %)
+runDiffusionStep_TIME               = 3.967210e+01 s (76.34 %)
+runDecayStep_TIME                   = 1.016193e+00 s (1.96 %)
+cellMovementAndDuplication_TIME     = 1.154065e-01 s (0.22 %)
+runDiffusionClusterStep_TIME        = 7.687699e+00 s (14.79 %)
+getEnergy_TIME                      = 7.304094e-01 s (1.41 %)
+getCriterion_TIME                   = 7.395563e-01 s (1.42 %)
+TOTAL_COMPUTE_TIME                  = 5.196551e+01 s (100.00 %)
 ==================================================

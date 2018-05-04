@@ -456,6 +456,7 @@ static void help(const char *name)
 }
 
 int main(int argc, char *argv[]) {
+    srand(1000);
     stopwatch init_sw;
     init_sw.reset();
 
