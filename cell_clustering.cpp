@@ -81,9 +81,9 @@ static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
 
     int c, i1, i2, i3;
     for (c=0; c< n; c++) {
-        i1 = std::min((int)floor(posAll[c][0]*(float)L),(L-1));
-        i2 = std::min((int)floor(posAll[c][1]*(float)L),(L-1));
-        i3 = std::min((int)floor(posAll[c][2]*(float)L),(L-1));
+        i1 = min((int)floor(posAll[c][0]*(float)L),(L-1));
+        i2 = min((int)floor(posAll[c][1]*(float)L),(L-1));
+        i3 = min((int)floor(posAll[c][2]*(float)L),(L-1));
 
         if (typesAll[c]==1) {
             Conc[0][i1][i2][i3]+=0.1;
@@ -232,16 +232,16 @@ static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posA
 
     for (c = 0; c < n; c++) {
 
-        i1 = std::min((int)floor(posAll[c][0]/sideLength),(L-1));
-        i2 = std::min((int)floor(posAll[c][1]/sideLength),(L-1));
-        i3 = std::min((int)floor(posAll[c][2]/sideLength),(L-1));
+        i1 = min((int)floor(posAll[c][0]/sideLength),(L-1));
+        i2 = min((int)floor(posAll[c][1]/sideLength),(L-1));
+        i3 = min((int)floor(posAll[c][2]/sideLength),(L-1));
 
-        xUp = std::min((i1+1),L-1);
-        xDown = std::max((i1-1),0);
-        yUp = std::min((i2+1),L-1);
-        yDown = std::max((i2-1),0);
-        zUp = std::min((i3+1),L-1);
-        zDown = std::max((i3-1),0);
+        xUp = min((i1+1),L-1);
+        xDown = max((i1-1),0);
+        yUp = min((i2+1),L-1);
+        yDown = max((i2-1),0);
+        zUp = min((i3+1),L-1);
+        zDown = max((i3-1),0);
 
         gradSub1[0] = (Conc[0][xUp][i2][i3]-Conc[0][xDown][i2][i3])/(sideLength*(xUp-xDown));
         gradSub1[1] = (Conc[0][i1][yUp][i3]-Conc[0][i1][yDown][i3])/(sideLength*(yUp-yDown));
