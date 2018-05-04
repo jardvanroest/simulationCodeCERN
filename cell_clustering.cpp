@@ -158,11 +158,12 @@ static void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.reset();
     // computes the changes in substance concentrations due to decay
     int i1,i2,i3;
+    float mu1 = 1-mu;
     for (i1 = 0; i1 < L; i1++) {
         for (i2 = 0; i2 < L; i2++) {
             for (i3 = 0; i3 < L; i3++) {
-                Conc[0][i1][i2][i3] = Conc[0][i1][i2][i3]*(1-mu);
-                Conc[1][i1][i2][i3] = Conc[1][i1][i2][i3]*(1-mu);
+                Conc[0][i1][i2][i3] = Conc[0][i1][i2][i3]*mu1;
+                Conc[1][i1][i2][i3] = Conc[1][i1][i2][i3]*mu1;
             }
         }
     }
@@ -455,6 +456,7 @@ static void help(const char *name)
 }
 
 int main(int argc, char *argv[]) {
+    srand(1000);
     stopwatch init_sw;
     init_sw.reset();
 
