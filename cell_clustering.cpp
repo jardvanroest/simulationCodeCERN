@@ -122,20 +122,19 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
     int xUp, xDown, yUp, yDown, zUp, zDown;
     
     // Calculate diffusion
-    for (i1 = 0; i1 < L; ++i1) {            //
-        for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
-            for (i3 = 0; i3 < L; ++i3) {    //
-                
-                // Get cells around current cell
-                xUp = (i1+1);
-                xDown = (i1-1);
-                yUp = (i2+1);
-                yDown = (i2-1);
-                zUp = (i3+1);
-                zDown = (i3-1);
-                
-                for (subInd = 0; subInd < 2; subInd++) {
+    for (subInd = 0; subInd < 2; subInd++) {
+        for (i1 = 0; i1 < L; ++i1) {            //
+            for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
+                for (i3 = 0; i3 < L; ++i3) {    //
                     
+                    // Get cells around current cell
+                    xUp = (i1+1);
+                    xDown = (i1-1);
+                    yUp = (i2+1);
+                    yDown = (i2-1);
+                    zUp = (i3+1);
+                    zDown = (i3-1);
+                        
                     // If not out of bounds
                     if (xUp<L) {
                         // 1. Get value of cell above minus current cell
