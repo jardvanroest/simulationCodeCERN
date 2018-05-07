@@ -41,7 +41,7 @@ static int quiet = 0;
 
 static float RandomFloatPos() {
     // returns a random number between a given minimum and maximum
-    return ((float) rand()) / (float) RAND_MAX;;
+    return ((float) rand()) / (float) RAND_MAX;
 }
 
 static float getNorm(float* currArray) {
@@ -108,38 +108,34 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
     // computes the changes in substance concentrations due to diffusion
     register int i1,i2,i3, subInd;
     float tempConc[2][L][L][L];
+  for (subInd = 0; subInd < 2; subInd++) {
     
     // Copy Conc array to tempConc array
     for (i1 = 0; i1 < L; ++i1) {
         for (i2 = 0; i2 < L; ++i2) {
             for (i3 = 0; i3 < L; ++i3) {
-                tempConc[0][i1][i2][i3] = Conc[0][i1][i2][i3];
-                tempConc[1][i1][i2][i3] = Conc[1][i1][i2][i3];
+                tempConc[subInd][i1][i2][i3] = Conc[0][i1][i2][i3];
+                
             }
         }
     }
+ 
 
     int xUp, xDown, yUp, yDown, zUp, zDown;
     
     // Calculate diffusion
-    for (subInd = 0; subInd < 2; subInd++) {
-        for (i1 = 0; i1 < L; ++i1) {            //
-            for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
-                for (i3 = 0; i3 < L; ++i3) {    //
-                    
-                    // Get cells around current cell
-                    xUp = (i1+1);
-                    xDown = (i1-1);
-                    yUp = (i2+1);
-                    yDown = (i2-1);
-                    zUp = (i3+1);
-                    zDown = (i3-1);
-                        
-                    // If not out of bounds
+    for (i1 = 0; i1 < L; i1++) {
+        for (i2 = 0; i2 < L; i2++) {
+            for (i3 = 0; i3 < L; i3++) {
+                xUp = (i1+1);
+                xDown = (i1-1);
+                yUp = (i2+1);
+                yDown = (i2-1);
+                zUp = (i3+1);
+                zDown = (i3-1);
+
+                
                     if (xUp<L) {
-                        // 1. Get value of cell above minus current cell
-                        // 2. Multiply by D/6
-                        // 3. Add to current cell
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
                     }
                     if (xDown>=0) {
@@ -160,7 +156,7 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
                 }
             }
         }
-    }
+  }
     runDiffusionStep_sw.mark();
 }
 
