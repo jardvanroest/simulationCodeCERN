@@ -3,7 +3,7 @@ BUILD_HOST := $(shell sh -c './BUILD-HOST-GEN')
 
 CFLAGS = -DCOMPILER_VERSION=\"$(COMPILER_VERSION)\" -DBUILD_HOST=\"$(BUILD_HOST)\"
 
-CFLAGS += -O3
+CFLAGS += -O2
 
 PLATFORM:=$(shell uname)
 
