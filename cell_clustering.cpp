@@ -83,15 +83,9 @@ inline void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
 
     int c, i1, i2, i3;
     for (c=0; c< n; c++) {
-<<<<<<< HEAD
         i1 = min((int)floor(posAll[c][0]/sideLength),(L-1));
         i2 = min((int)floor(posAll[c][1]/sideLength),(L-1));
         i3 = min((int)floor(posAll[c][2]/sideLength),(L-1));
-=======
-        i1 = min( (int) floor(posAll[c][0]*l),(L-1));
-        i2 = min( (int) floor(posAll[c][1]*l),(L-1));
-        i3 = min( (int) floor(posAll[c][2]*l),(L-1));
->>>>>>> 87983257a99439ba81e7c536c1024cd08013059e
 
         if (typesAll[c]==1) {
             Conc[0][i1][i2][i3]+=0.1;
