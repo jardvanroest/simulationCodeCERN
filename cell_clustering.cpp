@@ -538,7 +538,7 @@ int main(int argc, char *argv[]) {
     posAll = new float*[finalNumberCells];
     float** currMov=0;  // array of all 3 dimensional cell movements at the last time point
     currMov = new float*[finalNumberCells]; // array of all cell movements in the last time step
-    float zeroFloat = 0.0;
+    //float zeroFloat = 0.0;
 
     float pathTraveled[finalNumberCells];   // array keeping track of length of path traveled until cell divides
     int numberDivisions[finalNumberCells];  //array keeping track of number of division a cell has undergone
@@ -553,10 +553,10 @@ int main(int argc, char *argv[]) {
     for (i1 = 0; i1 < finalNumberCells; i1++) {
         currMov[i1] = new float[3];
         posAll[i1] = new float[3];
-        pathTraveled[i1] = zeroFloat;
+        pathTraveled[i1] = 0;
         pathTraveled[i1] = 0;
         for (i2 = 0; i2 < 3; i2++) {
-            currMov[i1][i2] = zeroFloat;
+            currMov[i1][i2] = 0;
             posAll[i1][i2] = 0.5;
         }
     }
@@ -571,7 +571,7 @@ int main(int argc, char *argv[]) {
             for (i3 = 0; i3 < L; i3++) {
                 Conc[i1][i2][i3] = new float[L];
                 for (i4 = 0; i4 < L; i4++) {
-                    Conc[i1][i2][i3][i4] = zeroFloat;
+                    Conc[i1][i2][i3][i4] = 0;
                 }
             }
         }
