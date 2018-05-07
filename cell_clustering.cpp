@@ -612,7 +612,7 @@ int main(int argc, char *argv[]) {
     phase2_sw.reset();
 
     // Phase 2: Cells move along the substance gradients and cluster
-    for (i=0; i<T; i++) {
+    for (i=0; i<T; ++i) {
 
         if ((i%10) == 0) {
             if(quiet < 1) {
