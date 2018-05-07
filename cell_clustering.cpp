@@ -83,9 +83,9 @@ static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
     float l = (float) L;
     int c, i1, i2, i3;
     for (c=0; c< n; c++) {
-        i1 = min((int)floor(posAll[c][0]*l,(L-1));
-        i2 = min((int)floor(posAll[c][1]*l),(L-1));
-        i3 = min((int)floor(posAll[c][2]*l),(L-1));
+        i1 = min( (int) floor(posAll[c][0]*l),(L-1));
+        i2 = min( (int) floor(posAll[c][1]*l),(L-1));
+        i3 = min( (int) floor(posAll[c][2]*l),(L-1));
 
         if (typesAll[c]==1) {
             Conc[0][i1][i2][i3]+=0.1;
