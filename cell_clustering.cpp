@@ -122,9 +122,11 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     int xUp, xDown, yUp, yDown, zUp, zDown;
     
     // Calculate diffusion
-    for (i1 = 0; i1 < L; ++i1) {
-        for (i2 = 0; i2 < L; ++i2) {
-            for (i3 = 0; i3 < L; ++i3) {
+    for (i1 = 0; i1 < L; ++i1) {            //
+        for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
+            for (i3 = 0; i3 < L; ++i3) {    //
+                
+                // Get cells around current cell
                 xUp = (i1+1);
                 xDown = (i1-1);
                 yUp = (i2+1);
@@ -133,7 +135,12 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
                 zDown = (i3-1);
                 
                 for (subInd = 0; subInd < 2; subInd++) {
+                    
+                    // If not out of bounds
                     if (xUp<L) {
+                        // 1. Get value of cell above minus current cell
+                        // 2. Multiply by D/6
+                        // 3. Add to current cell
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
                     }
                     if (xDown>=0) {
