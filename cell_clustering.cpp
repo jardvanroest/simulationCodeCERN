@@ -75,17 +75,17 @@ static stopwatch runDiffusionClusterStep_sw;
 static stopwatch getEnergy_sw;
 static stopwatch getCriterion_sw;
 
-static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
+inline void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
     produceSubstances_sw.reset();
 
     // increases the concentration of substances at the location of the cells
     float sideLength = 1/(float)L; // length of a side of a diffusion voxel
-    float l = (float) L;
+
     int c, i1, i2, i3;
     for (c=0; c< n; c++) {
-        i1 = min((int)floor(posAll[c][0]*l,(L-1));
-        i2 = min((int)floor(posAll[c][1]*l),(L-1));
-        i3 = min((int)floor(posAll[c][2]*l),(L-1));
+        i1 = min((int)floor(posAll[c][0]/sideLength),(L-1));
+        i2 = min((int)floor(posAll[c][1]/sideLength),(L-1));
+        i3 = min((int)floor(posAll[c][2]/sideLength),(L-1));
 
         if (typesAll[c]==1) {
             Conc[0][i1][i2][i3]+=0.1;
@@ -103,10 +103,10 @@ static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
     produceSubstances_sw.mark();
 }
 
-static void runDiffusionStep(float**** Conc, int L, float D) {
+inline void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.reset();
     // computes the changes in substance concentrations due to diffusion
-    int i1,i2,i3, subInd;
+    register int i1,i2,i3, subInd;
     float tempConc[2][L][L][L];
     
     // Copy Conc array to tempConc array
@@ -158,7 +158,7 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.mark();
 }
 
-static void runDecayStep(float**** Conc, int L, float mu) {
+inline void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.reset();
     // computes the changes in substance concentrations due to decay
     float mu1 = 1 - mu;
@@ -174,7 +174,7 @@ static void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.mark();
 }
 
-static int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* typesAll, int* numberDivisions, float pathThreshold, int divThreshold, int n) {
+inline int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* typesAll, int* numberDivisions, float pathThreshold, int divThreshold, int n) {
     cellMovementAndDuplication_sw.reset();
     int c;
     int currentNumberCells = n;
@@ -223,7 +223,7 @@ static int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* 
     return currentNumberCells;
 }
 
-static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posAll, int* typesAll, int n, int L, float speed) {
+inline void runDiffusionClusterStep(float**** Conc, float** movVec, float** posAll, int* typesAll, int n, int L, float speed) {
     runDiffusionClusterStep_sw.reset();
     // computes movements of all cells based on gradients of the two substances
 
@@ -274,7 +274,7 @@ static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posA
     runDiffusionClusterStep_sw.mark();
 }
 
-static float getEnergy(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
+inline float getEnergy(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
     getEnergy_sw.reset();
     // Computes an energy measure of clusteredness within a subvolume. The size of the subvolume
     // is computed by assuming roughly uniform distribution within the whole volume, and selecting
