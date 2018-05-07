@@ -110,9 +110,9 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     float tempConc[2][L][L][L];
     
     // Copy Conc array to tempConc array
-    for (i1 = 0; i1 < L; i1++) {
-        for (i2 = 0; i2 < L; i2++) {
-            for (i3 = 0; i3 < L; i3++) {
+    for (i1 = 0; i1 < L; ++i1) {
+        for (i2 = 0; i2 < L; ++i2) {
+            for (i3 = 0; i3 < L; ++i3) {
                 tempConc[0][i1][i2][i3] = Conc[0][i1][i2][i3];
                 tempConc[1][i1][i2][i3] = Conc[1][i1][i2][i3];
             }
@@ -122,9 +122,9 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     int xUp, xDown, yUp, yDown, zUp, zDown;
     
     // Calculate diffusion
-    for (i1 = 0; i1 < L; i1++) {
-        for (i2 = 0; i2 < L; i2++) {
-            for (i3 = 0; i3 < L; i3++) {
+    for (i1 = 0; i1 < L; ++i1) {
+        for (i2 = 0; i2 < L; ++i2) {
+            for (i3 = 0; i3 < L; ++i3) {
                 xUp = (i1+1);
                 xDown = (i1-1);
                 yUp = (i2+1);
