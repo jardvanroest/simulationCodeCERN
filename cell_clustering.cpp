@@ -108,6 +108,8 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     // computes the changes in substance concentrations due to diffusion
     int i1,i2,i3, subInd;
     float tempConc[2][L][L][L];
+    
+    // Copy Conc array to tempConc array
     for (i1 = 0; i1 < L; i1++) {
         for (i2 = 0; i2 < L; i2++) {
             for (i3 = 0; i3 < L; i3++) {
@@ -118,8 +120,8 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     }
 
     int xUp, xDown, yUp, yDown, zUp, zDown;
-    float d = D/6;
-
+    
+    // Calculate diffusion
     for (i1 = 0; i1 < L; i1++) {
         for (i2 = 0; i2 < L; i2++) {
             for (i3 = 0; i3 < L; i3++) {
