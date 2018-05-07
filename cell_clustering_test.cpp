@@ -138,12 +138,13 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
         }
     }
    for (subInd = 0; subInd < 2; subInd++) {
-        for (i1 = 0; i1 < L; ++i1) {            //
+        for (i1 = 0; i1 < L; ++i1) {    
+          xDown = (i1-1);
             for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
                 for (i3 = 0; i3 < L; ++i3) {    //
                     
                     // Get cells around current cell
-                    xDown = (i1-1);
+                    
                         
                     if (xDown>=0) {
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][xDown][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
@@ -153,12 +154,13 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
         }
     }
   for (subInd = 0; subInd < 2; subInd++) {
+    xUp = (i1+1);
+
         for (i1 = 0; i1 < L; ++i1) {            //
             for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
                 for (i3 = 0; i3 < L; ++i3) {    //
                     
                     // Get cells around current cell
-                    xUp = (i1+1);
                         
                     if (xUp<L) {
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
@@ -169,11 +171,13 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
     }
   for (subInd = 0; subInd < 2; subInd++) {
         for (i1 = 0; i1 < L; ++i1) {            //
-            for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
+            for (i2 = 0; i2 < L; ++i2) {
+              yUp = (i2+1);
+              // For each place in the 3D matrix
                 for (i3 = 0; i3 < L; ++i3) {    //
                     
                     // Get cells around current cell
-                    yUp = (i2+1);
+                    
                         
                     if (yUp<L) {
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yUp][i3]-tempConc[subInd][i1][i2][i3])*D/6;
@@ -184,11 +188,12 @@ inline void runDiffusionStep(float**** Conc, int L, float D) {
     }
   for (subInd = 0; subInd < 2; subInd++) {
         for (i1 = 0; i1 < L; ++i1) {            //
-            for (i2 = 0; i2 < L; ++i2) {        // For each place in the 3D matrix
+            for (i2 = 0; i2 < L; ++i2) {   
+              yDown = (i2-1);// For each place in the 3D matrix
                 for (i3 = 0; i3 < L; ++i3) {    //
                     
                     // Get cells around current cell
-                    yDown = (i2-1);
+                    
                         
                     if (yDown>=0) {
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yDown][i3]-tempConc[subInd][i1][i2][i3])*D/6;
