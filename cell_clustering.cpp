@@ -39,12 +39,12 @@ using namespace std;
 
 static int quiet = 0;
 
-static inline float RandomFloatPos() {
+static float RandomFloatPos() {
     // returns a random number between a given minimum and maximum
     return ((float) rand()) / (float) RAND_MAX;
 }
 
-static inline float getNorm(float* currArray) {
+static float getNorm(float* currArray) {
     // computes L2 norm of input array
     int c;
     float arraySum=0;
@@ -56,7 +56,7 @@ static inline float getNorm(float* currArray) {
     return res;
 }
 
-static inline float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, float pos2y, float pos2z) {
+static float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, float pos2y, float pos2z) {
     // returns distance (L2 norm) between two positions in 3D
     float distArray[3];
     distArray[0] = pos2x-pos1x;
@@ -75,7 +75,7 @@ static stopwatch runDiffusionClusterStep_sw;
 static stopwatch getEnergy_sw;
 static stopwatch getCriterion_sw;
 
-static inline void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
+static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
     produceSubstances_sw.reset();
 
     // increases the concentration of substances at the location of the cells
@@ -103,7 +103,7 @@ static inline void produceSubstances(float**** Conc, float** posAll, int* typesA
     produceSubstances_sw.mark();
 }
 
-static inline void runDiffusionStep(float**** Conc, int L, float D) {
+static void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.reset();
     // computes the changes in substance concentrations due to diffusion
     register int i1,i2,i3, subInd;
@@ -126,11 +126,6 @@ static inline void runDiffusionStep(float**** Conc, int L, float D) {
     for (i1 = 0; i1 < L; i1++) {
         for (i2 = 0; i2 < L; ++i2) {
             for (i3 = 0; i3 < L; ++i3) {
-                
-              
-                
-                
-                
 
                     xUp = (i1+1);
                     xDown = (i1-1);
@@ -140,11 +135,7 @@ static inline void runDiffusionStep(float**** Conc, int L, float D) {
                     if (xDown>=0) {
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][xDown][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
                     }
-                   
-              
-                
-                    
-                    
+
                 }
             }
         }
@@ -181,7 +172,7 @@ static inline void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.mark();
 }
 
-static inline void runDecayStep(float**** Conc, int L, float mu) {
+static void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.reset();
     // computes the changes in substance concentrations due to decay
     float mu1 = 1 - mu;
@@ -197,7 +188,7 @@ static inline void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.mark();
 }
 
-static inline int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* typesAll, int* numberDivisions, float pathThreshold, int divThreshold, int n) {
+static int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* typesAll, int* numberDivisions, float pathThreshold, int divThreshold, int n) {
     cellMovementAndDuplication_sw.reset();
     int c;
     int currentNumberCells = n;
@@ -246,7 +237,7 @@ static inline int cellMovementAndDuplication(float** posAll, float* pathTraveled
     return currentNumberCells;
 }
 
-static inline void runDiffusionClusterStep(float**** Conc, float** movVec, float** posAll, int* typesAll, int n, int L, float speed) {
+static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posAll, int* typesAll, int n, int L, float speed) {
     runDiffusionClusterStep_sw.reset();
     // computes movements of all cells based on gradients of the two substances
 
@@ -297,7 +288,7 @@ static inline void runDiffusionClusterStep(float**** Conc, float** movVec, float
     runDiffusionClusterStep_sw.mark();
 }
 
-static inline float getEnergy(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
+static float getEnergy(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
     getEnergy_sw.reset();
     // Computes an energy measure of clusteredness within a subvolume. The size of the subvolume
     // is computed by assuming roughly uniform distribution within the whole volume, and selecting
@@ -349,7 +340,7 @@ static inline float getEnergy(float** posAll, int* typesAll, int n, float spatia
     return totalEnergy;
 }
 
-static inline bool getCriterion(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
+static bool getCriterion(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
     getCriterion_sw.reset();
     // Returns 0 if the cell locations within a subvolume of the total system, comprising approximately targetN cells,
     // are arranged as clusters, and 1 otherwise.
@@ -447,12 +438,12 @@ static inline bool getCriterion(float** posAll, int* typesAll, int n, float spat
 
 static const char usage_str[] = "USAGE:\t%s[-h] [-V] [--<param>=<value>]* <input file> \n";
 
-static inline void usage(const char *name)
+static void usage(const char *name)
 {
     die(usage_str, basename((char*)name));
 }
 
-static inline void help(const char *name)
+static void help(const char *name)
 {
     fprintf(stderr, usage_str, name);
     fprintf(stderr, "DESCRIPTION\n"
