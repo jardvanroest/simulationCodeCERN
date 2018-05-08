@@ -39,12 +39,12 @@ using namespace std;
 
 static int quiet = 0;
 
-static float RandomFloatPos() {
+static inline float RandomFloatPos() {
     // returns a random number between a given minimum and maximum
     return ((float) rand()) / (float) RAND_MAX;
 }
 
-static float getNorm(float* currArray) {
+static inline float getNorm(float* currArray) {
     // computes L2 norm of input array
     int c;
     float arraySum=0;
@@ -56,7 +56,7 @@ static float getNorm(float* currArray) {
     return res;
 }
 
-static float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, float pos2y, float pos2z) {
+static inline float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, float pos2y, float pos2z) {
     // returns distance (L2 norm) between two positions in 3D
     float distArray[3];
     distArray[0] = pos2x-pos1x;
@@ -75,7 +75,7 @@ static stopwatch runDiffusionClusterStep_sw;
 static stopwatch getEnergy_sw;
 static stopwatch getCriterion_sw;
 
-static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
+static inline void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
     produceSubstances_sw.reset();
 
     // increases the concentration of substances at the location of the cells
@@ -103,7 +103,7 @@ static void produceSubstances(float**** Conc, float** posAll, int* typesAll, int
     produceSubstances_sw.mark();
 }
 
-static void runDiffusionStep(float**** Conc, int L, float D) {
+static inline void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.reset();
     // computes the changes in substance concentrations due to diffusion
     register int i1,i2,i3, subInd;
@@ -181,7 +181,7 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.mark();
 }
 
-static void runDecayStep(float**** Conc, int L, float mu) {
+static inline void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.reset();
     // computes the changes in substance concentrations due to decay
     float mu1 = 1 - mu;
@@ -197,7 +197,7 @@ static void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.mark();
 }
 
-static int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* typesAll, int* numberDivisions, float pathThreshold, int divThreshold, int n) {
+static inline int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* typesAll, int* numberDivisions, float pathThreshold, int divThreshold, int n) {
     cellMovementAndDuplication_sw.reset();
     int c;
     int currentNumberCells = n;
@@ -246,7 +246,7 @@ static int cellMovementAndDuplication(float** posAll, float* pathTraveled, int* 
     return currentNumberCells;
 }
 
-static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posAll, int* typesAll, int n, int L, float speed) {
+static inline void runDiffusionClusterStep(float**** Conc, float** movVec, float** posAll, int* typesAll, int n, int L, float speed) {
     runDiffusionClusterStep_sw.reset();
     // computes movements of all cells based on gradients of the two substances
 
@@ -297,7 +297,7 @@ static void runDiffusionClusterStep(float**** Conc, float** movVec, float** posA
     runDiffusionClusterStep_sw.mark();
 }
 
-static float getEnergy(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
+static inline float getEnergy(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
     getEnergy_sw.reset();
     // Computes an energy measure of clusteredness within a subvolume. The size of the subvolume
     // is computed by assuming roughly uniform distribution within the whole volume, and selecting
@@ -349,7 +349,7 @@ static float getEnergy(float** posAll, int* typesAll, int n, float spatialRange,
     return totalEnergy;
 }
 
-static bool getCriterion(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
+static inline bool getCriterion(float** posAll, int* typesAll, int n, float spatialRange, int targetN) {
     getCriterion_sw.reset();
     // Returns 0 if the cell locations within a subvolume of the total system, comprising approximately targetN cells,
     // are arranged as clusters, and 1 otherwise.
@@ -447,12 +447,12 @@ static bool getCriterion(float** posAll, int* typesAll, int n, float spatialRang
 
 static const char usage_str[] = "USAGE:\t%s[-h] [-V] [--<param>=<value>]* <input file> \n";
 
-static void usage(const char *name)
+static inline void usage(const char *name)
 {
     die(usage_str, basename((char*)name));
 }
 
-static void help(const char *name)
+static inline void help(const char *name)
 {
     fprintf(stderr, usage_str, name);
     fprintf(stderr, "DESCRIPTION\n"
