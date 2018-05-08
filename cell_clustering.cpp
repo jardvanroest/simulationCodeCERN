@@ -127,6 +127,45 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
         for (i2 = 0; i2 < L; ++i2) {
             for (i3 = 0; i3 < L; ++i3) {
                 
+              
+                
+                
+                
+
+                    xUp = (i1+1);
+                    xDown = (i1-1);
+                    if (xUp<L) {
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                    }
+                    if (xDown>=0) {
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xDown][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                    }
+                   
+              
+                
+                    
+                    
+                }
+            }
+        }
+    for (i1 = 0; i1 < L; i1++) {
+        for (i2 = 0; i2 < L; i2++) {
+            for (i3 = 0; i3 < L; i3++) {
+                yUp = (i2+1);
+                   yDown = (i2-1);
+                    if (yUp<L) {
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yUp][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                    }
+                    if (yDown>=0) {
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yDown][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                    }
+                
+                }
+            }
+        }
+    for (i1 = 0; i1 < L; i1++) {
+        for (i2 = 0; i2 < L; i2++) {
+            for (i3 = 0; i3 < L; i3++) {
                 zUp = (i3+1);
                 zDown = (i3-1);
                     if (zUp<L) {
@@ -134,36 +173,6 @@ static void runDiffusionStep(float**** Conc, int L, float D) {
                     }
                     if (zDown>=0) {
                         Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][i2][zDown]-tempConc[subInd][i1][i2][i3])*D/6;
-                    }
-                }
-            }
-        }
-    for (i1 = 0; i1 < L; i1++) {
-        for (i2 = 0; i2 < L; i2++) {
-            for (i3 = 0; i3 < L; i3++) {
-                
-                yUp = (i2+1);
-                yDown = (i2-1);
-                    if (yUp<L) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yUp][i3]-tempConc[subInd][i1][i2][i3])*D/6;
-                    }
-                    if (yDown>=0) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yDown][i3]-tempConc[subInd][i1][i2][i3])*D/6;
-                    }
-                }
-            }
-        }
-    for (i1 = 0; i1 < L; i1++) {
-        for (i2 = 0; i2 < L; i2++) {
-            for (i3 = 0; i3 < L; i3++) {
-                
-                xUp = (i1+1);
-                xDown = (i1-1);
-                    if (xUp<L) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
-                    }
-                    if (xDown>=0) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xDown][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
                     }
                 }
             }
