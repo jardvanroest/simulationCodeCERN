@@ -44,7 +44,7 @@ static inline float RandomFloatPos() {
     return ((float) rand()) / (float) RAND_MAX;
 }
 
-static inline  float getNorm(float* currArray) {
+static inline float getNorm(float* currArray) {
     // computes L2 norm of input array
     int c;
     float arraySum=0;
@@ -56,7 +56,7 @@ static inline  float getNorm(float* currArray) {
     return res;
 }
 
-static inline  float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, float pos2y, float pos2z) {
+static inline float getL2Distance(float pos1x, float pos1y, float pos1z, float pos2x, float pos2y, float pos2z) {
     // returns distance (L2 norm) between two positions in 3D
     float distArray[3];
     distArray[0] = pos2x-pos1x;
@@ -75,7 +75,7 @@ static stopwatch runDiffusionClusterStep_sw;
 static stopwatch getEnergy_sw;
 static stopwatch getCriterion_sw;
 
-static inline  void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
+static inline void produceSubstances(float**** Conc, float** posAll, int* typesAll, int L, int n) {
     produceSubstances_sw.reset();
 
     // increases the concentration of substances at the location of the cells
@@ -103,8 +103,9 @@ static inline  void produceSubstances(float**** Conc, float** posAll, int* types
     produceSubstances_sw.mark();
 }
 
-static inline  void runDiffusionStep(float**** Conc, int L, float D) {
+static inline void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.reset();
+    float d = D/6;
     // computes the changes in substance concentrations due to diffusion
     register int i1,i2,i3, subInd;
     float tempConc[2][L][L][L];
@@ -124,16 +125,17 @@ static inline  void runDiffusionStep(float**** Conc, int L, float D) {
     
     // Calculate diffusion
     for (i1 = 0; i1 < L; i1++) {
+      xUp = (i1+1);
+                    xDown = (i1-1);
         for (i2 = 0; i2 < L; ++i2) {
             for (i3 = 0; i3 < L; ++i3) {
 
-                    xUp = (i1+1);
-                    xDown = (i1-1);
+                    
                     if (xUp<L) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xUp][i2][i3]-tempConc[subInd][i1][i2][i3])*d;
                     }
                     if (xDown>=0) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xDown][i2][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][xDown][i2][i3]-tempConc[subInd][i1][i2][i3])*d;
                     }
 
                 }
@@ -141,14 +143,15 @@ static inline  void runDiffusionStep(float**** Conc, int L, float D) {
         }
     for (i1 = 0; i1 < L; i1++) {
         for (i2 = 0; i2 < L; i2++) {
-            for (i3 = 0; i3 < L; i3++) {
-                yUp = (i2+1);
+          yUp = (i2+1);
                    yDown = (i2-1);
+            for (i3 = 0; i3 < L; i3++) {
+                
                     if (yUp<L) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yUp][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yUp][i3]-tempConc[subInd][i1][i2][i3])*d;
                     }
                     if (yDown>=0) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yDown][i3]-tempConc[subInd][i1][i2][i3])*D/6;
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][yDown][i3]-tempConc[subInd][i1][i2][i3])*d;
                     }
                 
                 }
@@ -160,10 +163,10 @@ static inline  void runDiffusionStep(float**** Conc, int L, float D) {
                 zUp = (i3+1);
                 zDown = (i3-1);
                     if (zUp<L) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][i2][zUp]-tempConc[subInd][i1][i2][i3])*D/6;
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][i2][zUp]-tempConc[subInd][i1][i2][i3])*d;
                     }
                     if (zDown>=0) {
-                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][i2][zDown]-tempConc[subInd][i1][i2][i3])*D/6;
+                        Conc[subInd][i1][i2][i3] += (tempConc[subInd][i1][i2][zDown]-tempConc[subInd][i1][i2][i3])*d;
                     }
                 }
             }
@@ -172,7 +175,7 @@ static inline  void runDiffusionStep(float**** Conc, int L, float D) {
     runDiffusionStep_sw.mark();
 }
 
-static inline  void runDecayStep(float**** Conc, int L, float mu) {
+static inline void runDecayStep(float**** Conc, int L, float mu) {
     runDecayStep_sw.reset();
     // computes the changes in substance concentrations due to decay
     float mu1 = 1 - mu;
